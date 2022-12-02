@@ -39,7 +39,7 @@ export default function HomeView() {
 
             <div className="buttonContainer d-flex flex-column">
 
-                <Button variant="primary" onClick={handleShow} style={{ width: "30%" }}>
+                <Button variant="primary" onClick={handleShow} style={{ width: "30%" }} id="create">
                     Create Post
                 </Button>
 
@@ -56,14 +56,14 @@ export default function HomeView() {
                         <form id="newPost">
                             <label for="category" className="nameInput">Category</label><br />
                             <select name="category" id="category" value={categoryCreate} onChange={(e) => setCategoryCreate(e.target.value)}>
-                                <option value="question">Question</option>
+                                <option id="question" value="question">Question</option>
                                 <option value="suggestion">Suggestion</option>
                                 <option value="clarification">Clarification</option>
                             </select>
                             <p className="nameInput">Title</p>
-                            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                            <input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                             <p className="nameInput">Message</p>
-                            <input type="text" style={{ marginBottom: "3%" }} value={message} onChange={(e) => setMessage(e.target.value)} />
+                            <input id="message" type="text" style={{ marginBottom: "3%" }} value={message} onChange={(e) => setMessage(e.target.value)} />
                             <p>Image</p>
                             <input type="file" id="image" accept="image/png, image/jpeg" />
                         </form>

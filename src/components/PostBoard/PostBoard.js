@@ -17,7 +17,7 @@ export default function PostBoard(props) {
     }, [])
 
 
-    if (categoryBoard === "Question" && posts.map((post) => post.category) == categoryBoard) {
+    if (categoryBoard === "Question" && posts.map((post) => post.category) === categoryBoard) {
         return (
             <div className="categoryContainer" bg="light">
                 <h1>{props.category}<span class="material-symbols-outlined">question_mark</span></h1>
@@ -30,7 +30,7 @@ export default function PostBoard(props) {
             </div>
         );
     }
-    else if (categoryBoard === "Suggestion" && posts.map((post) => post.category) == categoryBoard) {
+    else if (categoryBoard === "Suggestion" && posts.map((post) => post.category) === categoryBoard) {
         return (
             <div className="categoryContainer" bg="light">
                 <h1>{props.category}<span class="material-symbols-outlined">speaker</span></h1>
@@ -42,7 +42,7 @@ export default function PostBoard(props) {
             </div>
         );
     }
-    else if (categoryBoard === "Clarification" && posts.map((post) => post.category) == categoryBoard) {
+    else if (categoryBoard === "Clarification" && posts.map((post) => post.category) === categoryBoard) {
         return (
             <div className="categoryContainer" bg="light"><h1>{props.category}<span class="material-symbols-outlined">edit</span></h1>
                 <PostCard>
