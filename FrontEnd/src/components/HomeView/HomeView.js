@@ -4,28 +4,44 @@ import Modal from 'react-bootstrap/Modal';
 import Navbar from 'react-bootstrap/Navbar';
 import PostBoard from "../PostBoard/PostBoard";
 import './HomeView.css';
-
+import axios from 'axios';
 
 export default function HomeView() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [categoryBoard, setCategoryBoard] = useState("Question");
-    const changeCategory = (e) => setCategoryBoard(e.target.value);
     const [title, setTitle] = useState('');
     const [message, setMessage] = useState('');
     const [categoryCreate, setCategoryCreate] = useState("")
     const handleClick = (e) => {
         e.preventDefault();
-        const post = { title, message, categoryCreate };
-        console.log(post);
-        fetch("http://localhost:9991/", {
-            method: "POST",
-            headers: { "Content-Type": "application" },
-            body: JSON.stringify(post)
-        }).then(() => {
-            console.log("New post added")
+        const post = { title, message, categoryCreate, id: "0", visibility: true };
+        console.log('brooo', post);
+        // axios
+        //     .post("http://localhost:9991", {
+        //         post
+        //     }).then(() => {
+        //         console.log("New post added")
+        //     }).catch(function (error) {
+        //         console.log(error);
+        //     });
+        // console.log("hello")
+        axios.post('https://reqres.in/api/articles', post)
+            .then(response => setShow(response.post));
+        axios.post('http://localhost:9991', {
+            title: { title },
+            category: { categoryCreate },
+            message: { message },
+            id: "2",
+            visibility: true
+
         })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     return (
@@ -64,8 +80,6 @@ export default function HomeView() {
                             <input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                             <p className="nameInput">Message</p>
                             <input id="message" type="text" style={{ marginBottom: "3%" }} value={message} onChange={(e) => setMessage(e.target.value)} />
-                            <p>Image</p>
-                            <input type="file" id="image" accept="image/png, image/jpeg" />
                         </form>
                     </Modal.Body>
                     <Modal.Footer>
@@ -75,18 +89,10 @@ export default function HomeView() {
                         <Button variant="primary" type="submit" onClick={handleClick}>Create</Button>
                     </Modal.Footer>
                 </Modal><br />
-
-                <label for="category" className="nameInput" style={{ marginTop: "1%" }}>Category</label><br />
-                <select name="category" id="category" style={{ height: "14%", width: "30%" }} defaultValue={categoryBoard} onChange={changeCategory}>
-                    <option value="Question">Question</option>
-                    <option value="Suggestion">Suggestion</option>
-                    <option value="Clarification">Clarification</option>
-                </select>
-
+                <Button onClick={show}>Show</Button>
             </div>
 
             <PostBoard
-                category={categoryBoard}
             />
         </>
     );
