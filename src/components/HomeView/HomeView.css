@@ -1,0 +1,13 @@
+select {
+    width: 30%;
+}
+
+.nav {
+    box-shadow: 5px 5px 30px #d5dcec;
+}
+
+.buttonContainer {
+    margin-top: 4%;
+    margin-bottom: 4%;
+    align-items: center;
+}
