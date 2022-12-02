@@ -41,7 +41,7 @@ class ForumPostControllerTest {
                         .content(asJsonString(new ForumPost("1", "Colocao", "Que dura la fumada", "doubt", true)))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
 
     }

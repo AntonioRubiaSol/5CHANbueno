@@ -24,7 +24,7 @@ public class ForumPostController {
 
     @PostMapping()
     public ResponseEntity<ForumPost> addPost(@RequestBody ForumPost forumPost) throws Exception {
-        return new ResponseEntity<>(service.addPost(forumPost), HttpStatus.OK);
+        return new ResponseEntity<>(service.addPost(forumPost), HttpStatus.CREATED);
     }
 
 }
